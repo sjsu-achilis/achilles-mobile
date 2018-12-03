@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import { Container, Content, Thumbnail, Title, Item, Input, Header, Text, Card, Button, Label } from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-export default class ProfileScreen extends Component {
+import { connect } from 'react-redux';
+class ProfileScreen extends Component {
     static navigationOptions = {
+        header: null,
+        showIcon: true,
         tabBarIcon: (tintColor) => {
+            console.log("Showing tab icon");
             return (
                 //<Ionicons name="md-analytics" size={25} color={tintColor} />
                 <Ionicons name="md-person" size={25} />
             )
         }
     };
+    constructor(props) {
+        super(props)
+    }
     render() {
         const { buttonStyle, buttonContainerStyle, headerRow, thumblineStyle } = styles;
         return (
@@ -38,10 +44,10 @@ export default class ProfileScreen extends Component {
                                             <Text>Injury Prediction</Text>
                                         </Col>
                                         <Col size={4} style={{ flexDirection: 'column', alignItems: 'center' }}>
-                                            <Text>Roger Federer</Text>
-                                            <Text>36</Text>
-                                            <Text>185 lb</Text>
-                                            <Text>6'1 ft</Text>
+                                            <Text>{this.props.user.name}</Text>
+                                            <Text>{this.props.user.age}</Text>
+                                            <Text>{this.props.user.weight} lb</Text>
+                                            <Text>{this.props.user.height} ft</Text>
                                             <Thumbnail small source={require('../../resources/images/green_heart_logo.png')} />
                                             <Thumbnail small source={require('../../resources/images/injury_green.png')} />
                                         </Col>
@@ -50,10 +56,10 @@ export default class ProfileScreen extends Component {
                             </Row>
                             <Row size={1} style={{ backgroundColor: 'orange' }}>
                                 <Container style={{ justifyContent: 'flex-start' }}>
-                                    <Button block style={buttonStyle}>
+                                    <Button block style={buttonStyle} onPress={() => this.props.navigation.navigate('Questionnaire')}>
                                         <Text>Edit Questionnaire</Text>
                                     </Button>
-                                    <Button block style={buttonStyle}>
+                                    <Button block style={buttonStyle} onPress={() => this.props.navigation.navigate('InjuryReport')}>
                                         <Text>Report Injury</Text>
                                     </Button>
                                     <Button block style={buttonStyle}>
@@ -90,3 +96,10 @@ const styles = {
         alignItems: 'center'
     }
 };
+
+mapStateToProps = ({ auth }) => {
+    return ({
+        user: auth.user,
+    })
+}
+export default connect(mapStateToProps, {})(ProfileScreen);

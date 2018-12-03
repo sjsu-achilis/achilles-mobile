@@ -8,7 +8,7 @@ export default class DashboardScreen extends Component {
     static navigationOptions = {
         tabBarIcon: (tintColor) => {
             return (
-                <Ionicons name="md-analytics" size={25} color={tintColor} />
+                <Ionicons name="md-analytics" size={25} />
             )
         }
     };
