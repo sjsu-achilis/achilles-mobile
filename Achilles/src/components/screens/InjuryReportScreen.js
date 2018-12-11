@@ -3,7 +3,28 @@ import { Slider } from 'react-native';
 import { Root, Container, Content, Thumbnail, Title, Item, Input, Header, Text, Card, Button, Label, Form, Picker, DatePicker, Toast, Textarea } from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { connect } from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 class InjuryReportScreen extends Component {
+    static navigationOptions = {
+        //header: null,
+        title: 'Injury Report Form',
+        headerStyle: {
+            backgroundColor: '#f4511e',
+            textAlign: 'center'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            width: '100%'
+        },
+        showIcon: true,
+        tabBarIcon: (tintColor) => {
+            return (
+                //<Ionicons name="md-analytics" size={25} color={tintColor} />
+                <Ionicons name="md-person" size={25} />
+            )
+        }
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -80,23 +101,20 @@ class InjuryReportScreen extends Component {
         });
     }
 
-    static navigationOptions = {
-        title: 'Report Injury',
-    };
     render() {
         return (
             <Root>
                 <Container>
                     <Content>
-                        <Container style={{ flex: 1 }}>
+                        <Container style={{ flex: 1, backgroundColor: '#2D2F33' }}>
                             <Grid>
-                                <Row size={3.5} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <Row size={4} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                     <Thumbnail square style={styles.thumblineStyle} source={require('../../resources/images/human.png')} />
                                 </Row>
-                                <Row size={0.5}>
+                                <Row size={0.5} style={{ marginTop: 10 }}>
 
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Date</Text>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Date</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <DatePicker
@@ -109,7 +127,7 @@ class InjuryReportScreen extends Component {
                                             animationType={"fade"}
                                             androidMode={"default"}
                                             placeHolderText="Select date"
-                                            textStyle={{ color: "green" }}
+                                            textStyle={{ color: "white" }}
                                             placeHolderTextStyle={{ color: "#d3d3d3" }}
                                             onDateChange={this.setDate}
                                         />
@@ -118,14 +136,14 @@ class InjuryReportScreen extends Component {
                                 </Row>
                                 <Row size={0.5}>
 
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Injury Type</Text>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Injury Type</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Picker
                                             mode="dropdown"
                                             placeholder="Select One"
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', color: 'white' }}
                                             placeholderStyle={{ color: "#2874F0" }}
                                             note={false}
                                             selectedValue={this.state.injuryTypeSelected}
@@ -140,14 +158,14 @@ class InjuryReportScreen extends Component {
                                 </Row>
                                 <Row size={0.5}>
 
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Injury Region</Text>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Injury Region</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Picker
                                             mode="dropdown"
                                             placeholder="Select One"
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', color: 'white' }}
                                             placeholderStyle={{ color: "#2874F0" }}
                                             note={false}
                                             selectedValue={this.state.injuryRegionSelected}
@@ -176,14 +194,14 @@ class InjuryReportScreen extends Component {
                                 </Row>
                                 <Row size={0.5}>
 
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Injury Location</Text>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Injury Location</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Picker
                                             mode="dropdown"
                                             placeholder="Select One"
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', color: 'white' }}
                                             placeholderStyle={{ color: "#2874F0" }}
                                             note={false}
                                             selectedValue={this.state.injuryLocationSelected}
@@ -199,8 +217,8 @@ class InjuryReportScreen extends Component {
                                 </Row>
                                 <Row size={0.5}>
 
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Injury Intensity</Text>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Injury Intensity</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Slider
@@ -208,20 +226,20 @@ class InjuryReportScreen extends Component {
                                             maximumValue={10}
                                             onValueChange={this.onSliderChange.bind(this)}
                                             value={this.state.sliderValue}
-                                            style={{ width: '100%' }}
+                                            style={{ width: '100%', color: 'white' }}
                                         />
                                     </Col>
 
                                 </Row>
-                                <Row size={2}>
-                                    <Col size={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text>Comments</Text>
+                                <Row size={1}>
+                                    <Col size={1.5} style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+                                        <Text style={{ color: 'white' }}>Comments</Text>
                                     </Col>
                                     <Col size={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                        <Textarea rowSpan={5} bordered placeholder="Add comments." onChangeText={this.onCommentChange.bind(this)} style={{ width: '100%', marginRight: 20 }} />
+                                        <Textarea rowSpan={3} bordered placeholder="Add comments." onChangeText={this.onCommentChange.bind(this)} style={{ width: '85%', marginRight: 20, color: 'white' }} />
                                     </Col>
                                 </Row>
-                                <Row size={0.5}>
+                                <Row size={0.5} style={{ marginTop: 20, marginBottom: 20 }}>
                                     <Button block style={styles.buttonStyle} onPress={this.onButtonPress.bind(this)}><Text>Submit</Text></Button>
                                 </Row>
                             </Grid>
@@ -242,7 +260,8 @@ const styles = {
     buttonStyle: {
         marginLeft: 10,
         width: '95%',
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: '#269DCB'
     }
 }
 mapStateToProps = ({ auth }) => {

@@ -47,7 +47,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, signup_error: '', loading: true }
         case SIGNUP_SUCCESS:
             console.log('User signed up successfully')
-            return { ...state, user: action.payload, loading: false }
+            return { ...state, user: action.payload, loading: false, username: '', password: '' }
         case SIGNUP_FAILED:
             console.log("Setting error text: " + action.payload)
             return { ...state, signup_error: action.payload, password: '', loading: false }

@@ -13,12 +13,14 @@ import MessageScreen from './components/screens/MessageScreen';
 import InjuryReportScreen from './components/screens/InjuryReportScreen';
 import QuestionnaireScreen from './components/screens/QuestionnaireScreen';
 import RegistrationScreen from './components/screens/RegistrationScreen';
+import SessionScreen from './components/screens/SessionScreen';
 import NavigationService from './NavigationService';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export class App extends Component {
 
   render() {
     const Container = createAppContainer(SwitchNavigator);
+    console.disableYellowBox = true;
     //const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
@@ -46,7 +48,7 @@ const ProfileStackNavigator = createStackNavigator(
     Questionnaire: QuestionnaireScreen,
   },
   {
-    headerTitleStyle: { textAlign: 'center', alignSelf: 'center' }
+    headerTitleStyle: { textAlign: 'center', alignSelf: 'center' },
   }
 );
 
@@ -54,6 +56,7 @@ const TabNavigator = createBottomTabNavigator(
   {
     Dashboard: DashboardScreen,
     Schedule: ScheduleScreen,
+    Session: SessionScreen,
     Message: MessageScreen,
     Profile: ProfileStackNavigator,
   },
@@ -62,14 +65,22 @@ const TabNavigator = createBottomTabNavigator(
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: 'red',
-      inactiveTintColor: 'gray',
-      showIcon: true
+      activeTintColor: 'white',
+      inactiveTintColor: 'black',
+      showIcon: true,
+      activeBackgroundColor: '#f4511e',
+      inactiveBackgroundColor: '#f4511e'
     },
     animationEnabled: false,
     swipeEnabled: false,
+
   }
 );
+
+ProfileStackNavigator.navigationOptions = {
+  tabBarLabel: "Profile",
+  tabBarIcon: ({ tintColor }) => <Ionicons name="md-person" size={25} />
+};
 
 const SwitchNavigator = createSwitchNavigator(
   {

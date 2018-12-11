@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, WebView, View } from 'react-native';
 import { Container, Content, Thumbnail, Title, Item, Input, Header, Text, Body, Right, Card, Button, CardItem, Left } from 'native-base';
 import { Row, Grid } from "react-native-easy-grid";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import LineChart from './MessageScreen';
+import CalorieChart from './CalorieChart';
+import StepsChart from './StepsChart';
+import DistanceChart from './DistanceChart';
+import ActivityChart from './ActivityChart';
 
 export default class DashboardScreen extends Component {
+    constructor(props) {
+        super(props);
+    }
     static navigationOptions = {
         tabBarIcon: (tintColor) => {
             return (
@@ -14,77 +22,74 @@ export default class DashboardScreen extends Component {
     };
     render() {
         return (
-            <Container>
+            <Container style={{ backgroundColor: '#2D2F33' }}>
                 <Header style={styles.headerStyle}>
-                    <Title>Dashboard Screen</Title>
+                    <Title style={{ color: 'black' }}>Dashboard Screen</Title>
                 </Header>
-                <Content>
-                    <Card>
-                        <CardItem>
-                            <Left style={{ marginLeft: 0 }}>
+                <Content style={{ backgroundColor: '#2D2F33' }}>
+                    <Card style={styles.cardStyle}>
+                        <CardItem style={{ borderRadius: 25 }}>
+                            <Left>
                                 <Body>
-                                    <Text >Fitness Level Illustration</Text>
+                                    <Text>Calorie Consumption</Text>
                                 </Body>
                             </Left>
                         </CardItem>
                         <CardItem cardBody>
-                            <Image source={require('../../resources/images/fitness_level.png')} style={{ height: 200, width: null, flex: 1 }} />
+                            <Container>
+                                <Content>
+                                    <CalorieChart />
+                                </Content>
+                            </Container>
                         </CardItem>
-                        <CardItem style={{ padding: 0 }}>
-                            <Right>
-                                <Text>2 mins ago</Text>
-                            </Right>
+
+                    </Card>
+                    <Card style={styles.cardStyle}>
+                        <CardItem style={{ borderRadius: 25 }}>
+                            <Left style={{ marginLeft: 0 }}>
+                                <Body>
+                                    <Text>Step Count</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+                        <CardItem cardBody>
+                            <Container>
+                                <Content>
+                                    <StepsChart />
+                                </Content>
+                            </Container>
                         </CardItem>
                     </Card>
-                    <Card>
-                        <CardItem>
+                    <Card style={styles.cardStyle}>
+                        <CardItem style={{ borderRadius: 25 }}>
                             <Left style={{ marginLeft: 0 }}>
                                 <Body>
-                                    <Text>Activity Ring</Text>
+                                    <Text>Distance Covered (meters)</Text>
                                 </Body>
                             </Left>
                         </CardItem>
                         <CardItem cardBody>
-                            <Image source={require('../../resources/images/activity_ring.jpg')} style={{ height: 200, width: null, flex: 1 }} />
-                        </CardItem>
-                        <CardItem style={{ padding: 0 }}>
-                            <Right>
-                                <Text>2 mins ago</Text>
-                            </Right>
+                            <Container>
+                                <Content>
+                                    <DistanceChart />
+                                </Content>
+                            </Container>
                         </CardItem>
                     </Card>
-                    <Card>
-                        <CardItem>
+                    <Card style={styles.cardStyle}>
+                        <CardItem style={{ borderRadius: 25 }}>
                             <Left style={{ marginLeft: 0 }}>
                                 <Body>
-                                    <Text >Endurance</Text>
+                                    <Text>Activity Pattern (minutes)</Text>
                                 </Body>
                             </Left>
                         </CardItem>
                         <CardItem cardBody>
-                            <Image source={require('../../resources/images/endurance.jpg')} style={{ height: 200, width: null, flex: 1 }} />
-                        </CardItem>
-                        <CardItem style={{ padding: 0 }}>
-                            <Right>
-                                <Text>2 mins ago</Text>
-                            </Right>
-                        </CardItem>
-                    </Card>
-                    <Card>
-                        <CardItem>
-                            <Left style={{ marginLeft: 0 }}>
-                                <Body>
-                                    <Text>Training Session Report</Text>
-                                </Body>
-                            </Left>
-                        </CardItem>
-                        <CardItem cardBody>
-                            <Image source={require('../../resources/images/table.jpeg')} style={{ height: 200, width: null, flex: 1 }} />
-                        </CardItem>
-                        <CardItem style={{ padding: 0 }}>
-                            <Right>
-                                <Text>2 mins ago</Text>
-                            </Right>
+                            <Container>
+                                <Content>
+                                    <ActivityChart />
+                                </Content>
+                            </Container>
                         </CardItem>
                     </Card>
                 </Content>
@@ -96,6 +101,11 @@ const styles = {
     headerStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#f4511e'
+    },
+    cardStyle: {
+        height: 400,
+        borderRadius: 25
     }
 }

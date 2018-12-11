@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import { Container, Content, Thumbnail, Form, Item, Input, Label, Text, Card, Button, Header, Title } from 'native-base';
+import { Container, Content, Thumbnail, Form, Item, Input, Label, Text, Card, Button, Header, Title, Spinner } from 'native-base';
 import { Row, Grid } from "react-native-easy-grid";
 import { usernameChanged, passwordChanged, nameChanged, emailChanged, registerUser } from '../../actions';
 import { connect } from 'react-redux';
 class RegistrationScreen extends Component {
+    static navigationOptions = {
+        title: 'Sign Up',
+        headerStyle: {
+            backgroundColor: '#f4511e',
+            textAlign: 'center'
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            width: '100%'
+        },
+    };
     onUsernameChange(text) {
         console.log(text)
         this.props.usernameChanged(text);
@@ -43,39 +54,35 @@ class RegistrationScreen extends Component {
         const { buttonStyle, buttonContainerStyle } = styles;
         return (
             <Container>
-                <Header style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                {/*<Header style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <Title>Sign Up</Title>
-                </Header>
-                <Content contentContainerStyle={{ flex: 1 }}>
+                </Header>*/}
+                <Content contentContainerStyle={{ flex: 1, backgroundColor: '#2D2F33' }}>
                     <Grid>
                         <Row size={65}>
-                            <Card style={{ flex: 1, justifyContent: 'flex-start' }}>
+                            <Card style={{ flex: 1, justifyContent: 'flex-start', backgroundColor: '#F7F7F8', borderRadius: 25 }}>
                                 <Form style={{ justifyContent: 'space-evenly' }}>
                                     <Item inlineLabel style={{ marginLeft: 10, marginRight: 10 }}>
-                                        <Label>Name</Label>
                                         <Input
-                                            placeholder="name"
+                                            placeholder="Name"
                                             onChangeText={this.onNameChange.bind(this)}
                                             value={this.props.name} />
                                     </Item>
                                     <Item inlineLabel style={{ marginLeft: 10, marginRight: 10 }}>
-                                        <Label>Email</Label>
                                         <Input
-                                            placeholder="email"
+                                            placeholder="Email"
                                             onChangeText={this.onEmailChange.bind(this)}
                                             value={this.props.email} />
                                     </Item>
                                     <Item inlineLabel style={{ marginLeft: 10, marginRight: 10 }}>
-                                        <Label>Username</Label>
                                         <Input
-                                            placeholder="username"
+                                            placeholder="Username"
                                             onChangeText={this.onUsernameChange.bind(this)}
                                             value={this.props.username} />
                                     </Item>
                                     <Item inlineLabel style={{ marginLeft: 10, marginRight: 10 }}>
-                                        <Label>Password</Label>
                                         <Input
-                                            placeholder="password"
+                                            placeholder="Password"
                                             onChangeText={this.onPasswordChange.bind(this)}
                                             value={this.props.password} />
                                     </Item>
@@ -100,11 +107,14 @@ const styles = {
     },
     buttonStyle: {
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
+        backgroundColor: '#90D377'
     },
     buttonContainerStyle: {
         paddingTop: 20,
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        borderRadius: 25,
+        backgroundColor: '#F7F7F8'
     },
     forgotLabelStyle: {
         fontSize: 12,
