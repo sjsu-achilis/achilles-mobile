@@ -13,18 +13,18 @@ export default class MessageScreen extends Component {
     };
     render() {
         return (
-            <Container style={{ paddingBottom: 10 }}>
+            <Container style={{ paddingBottom: 10, backgroundColor: '#2D2F33' }}>
                 <Header style={styles.headerStyle}>
-                    <Title>Message Screen</Title>
+                    <Title style={{ color: 'black' }}>Message Screen</Title>
                 </Header>
-                <Content>
+                <Content style={{ backgroundColor: '#2D2F33' }}>
                     <List>
                         <ListItem avatar>
                             <Left>
                                 <Thumbnail source={require('../../resources/images/coach_endurance.jpg')} />
                             </Left>
                             <Body>
-                                <Text>Michael Smith</Text>
+                                <Text style={styles.textStyle}>Michael Smith</Text>
                                 <Text note>Run starts at 6:00 am!</Text>
                             </Body>
                             <Right>
@@ -36,7 +36,7 @@ export default class MessageScreen extends Component {
                                 <Thumbnail source={require('../../resources/images/coach_nutritionist.jpg')} />
                             </Left>
                             <Body>
-                                <Text>Jenny Carra</Text>
+                                <Text style={styles.textStyle}>Jenny Carra</Text>
                                 <Text note>Don't forget to pick up your supplements.</Text>
                             </Body>
                             <Right>
@@ -48,11 +48,11 @@ export default class MessageScreen extends Component {
                                 <Thumbnail source={require('../../resources/images/coach_tennis.jpg')} />
                             </Left>
                             <Body>
-                                <Text>Roger Federer</Text>
+                                <Text style={styles.textStyle}>Roger Federer</Text>
                                 <Text note>Make sure you rest well before the session tomorrow.</Text>
                             </Body>
                             <Right>
-                                <Text note>2:10 pm</Text>
+                                <Text note >2:10 pm</Text>
                             </Right>
                         </ListItem>
                         <ListItem avatar>
@@ -60,7 +60,7 @@ export default class MessageScreen extends Component {
                                 <Thumbnail source={require('../../resources/images/coach_partner.jpg')} />
                             </Left>
                             <Body>
-                                <Text>Alex Zverev</Text>
+                                <Text style={styles.textStyle}>Alex Zverev</Text>
                                 <Text note>Great hit today!</Text>
                             </Body>
                             <Right>
@@ -69,7 +69,7 @@ export default class MessageScreen extends Component {
                         </ListItem>
                     </List>
                 </Content>
-                <Button block><Text>Send Message</Text></Button>
+                <Button block style={{ backgroundColor: '#90D377' }}><Text>Send Message</Text></Button>
             </Container>
         );
     };
@@ -78,6 +78,10 @@ const styles = {
     headerStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#f4511e',
+    },
+    textStyle: {
+        color: 'white'
     }
 }
